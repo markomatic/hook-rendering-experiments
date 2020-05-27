@@ -4,8 +4,7 @@ import { Options } from '../options';
 
 export const useSelect = ({
     data,
-    useMemo,
-    useCallback
+    useMemo
 }) => {
     const [selectedOption, setSelectedOption] = useState(null);
 
@@ -14,16 +13,13 @@ export const useSelect = ({
         value
     })), [data]);
 
-    const handleChange = useCallback(event => {
+    const handleChange = event => {
         setSelectedOption(
             options.find(({ value }) => value === +event.target.value)
         );
-    }, [
-        setSelectedOption,
-        options
-    ]);
+    };
 
-    const renderSelect = useCallback(() => (
+    const renderSelect = () => (
         <select
             value={get(selectedOption, 'value')}
             onChange={handleChange}
@@ -34,18 +30,10 @@ export const useSelect = ({
                 useMemo={useMemo}
             />
         </select>
-    ), [
-        selectedOption,
-        handleChange,
-        options,
-        useMemo
-    ]);
+    );
 
-    return useMemo(() => ([
+    return [
         renderSelect,
         { selectedOption }
-    ]), [
-        renderSelect,
-        selectedOption
-    ]);
+    ];
 };

@@ -30,8 +30,6 @@ const styles = {
 
 const useMemoDummy = fn => fn();
 
-const useCallbackDummy = fn => fn;
-
 const useContent = ({
     Component,
     componentKey,
@@ -39,7 +37,6 @@ const useContent = ({
     shouldUseComponent,
     data,
     useMemoImpl,
-    useCallbackImpl,
     handleSelectedOptionChange,
     isOptimized
 }) => (isOptimized ? useMemo : useMemoDummy)(() => Component && (
@@ -50,7 +47,6 @@ const useContent = ({
             shouldUseComponent={shouldUseComponent}
             data={data}
             useMemo={useMemoImpl}
-            useCallback={useCallbackImpl}
             onSelect={handleSelectedOptionChange}
         />
     ))
@@ -61,7 +57,6 @@ const useContent = ({
     shouldUseComponent,
     data,
     useMemoImpl,
-    useCallbackImpl,
     handleSelectedOptionChange
 ]);
 
@@ -82,11 +77,6 @@ export const App = () => {
 
     const useMemoImpl = useMemo(
         () => shouldUseMemo ? useMemo : useMemoDummy,
-        [shouldUseMemo]
-    );
-
-    const useCallbackImpl = useMemo(
-        () => shouldUseMemo ? useCallback : useCallbackDummy,
         [shouldUseMemo]
     );
 
@@ -132,7 +122,6 @@ export const App = () => {
         shouldUseComponent,
         data,
         useMemoImpl,
-        useCallbackImpl,
         handleSelectedOptionChange,
         isOptimized: false
     });

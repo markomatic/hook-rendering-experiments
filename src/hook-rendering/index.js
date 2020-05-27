@@ -8,7 +8,6 @@ export const HookRendering = ({
     shouldUseComponent,
     data,
     useMemo,
-    useCallback,
     onSelect
 }) => {
     const useHook = shouldUseComponent ? useSelectComponent : useSelect;
@@ -17,8 +16,7 @@ export const HookRendering = ({
         { selectedOption }
     ] = useHook({
         data,
-        useMemo,
-        useCallback
+        useMemo
     });
 
     const Select = !shouldRenderAsFunction && renderSelect;

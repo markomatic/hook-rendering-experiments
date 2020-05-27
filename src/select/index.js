@@ -6,22 +6,18 @@ export const Select = ({
     data,
     selectedOption,
     onSelect,
-    useMemo,
-    useCallback
+    useMemo
 }) => {
     const options = useMemo(() => data.map(({ value }) => ({
         label: `Item ${value}`,
         value
     })), [data]);
 
-    const handleChange = useCallback(event => {
+    const handleChange = event => {
         onSelect(
             options.find(({ value }) => value === +event.target.value)
         );
-    }, [
-        onSelect,
-        options
-    ]);
+    };
 
     return (
         <select

@@ -5,7 +5,6 @@ import { Select } from '../select';
 export const ComponentWithCallbacks = ({
     data,
     useMemo,
-    useCallback,
     onSelect
 }) => {
     const [selectedOption, setSelectedOption] = useState(null);
@@ -26,7 +25,6 @@ export const ComponentWithCallbacks = ({
             <Select
                 data={data}
                 useMemo={useMemo}
-                useCallback={useCallback}
                 onSelect={setSelectedOption}
                 selectedOption={selectedOption}
             />
